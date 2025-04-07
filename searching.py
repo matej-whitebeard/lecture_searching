@@ -1,5 +1,7 @@
 import os
 import json
+from operator import index
+
 # get current working directory path
 cwd_path = os.getcwd()
 
@@ -21,9 +23,19 @@ def read_data(file_name, field):
 
 
     return data[field]
-def main():
-    print(read_data("sequential.json", "unordered_numbers"))
 
+def linear_search(seq_search, number):
+    count  = 0
+    positions = []
+    for idx, i in enumerate(seq_search):
+        if i == number:
+            count = count+1
+            positions.append(idx)
+    result = {"positions":positions,"count":count}
+    return result
+def main():
+    seq_search = read_data("sequential.json", "unordered_numbers")
+    print(linear_search(seq_search, 54))
 
 if __name__ == '__main__':
     main()
